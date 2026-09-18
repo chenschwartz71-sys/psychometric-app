@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="he" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, interactive-widget=resizes-content" />
+    <meta name="theme-color" content="#FAFAFC" media="(prefers-color-scheme: light)" />
+    <meta name="theme-color" content="#0E0E12" media="(prefers-color-scheme: dark)" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
+    <meta name="apple-mobile-web-app-title" content="פסיכומטרי" />
+    <link rel="icon" href="./icon.svg" type="image/svg+xml" />
+    <link rel="apple-touch-icon" href="./pwa-192.png" />
+    <title>מאמן פסיכומטרי</title>
+    <script type="module" crossorigin src="./assets/index-DIk4X_pM.js"></script>
+    <link rel="stylesheet" crossorigin href="./assets/index-BzgUa14M.css">
+  <link rel="manifest" href="./manifest.webmanifest"></head>
+  <body>
+    <div id="root"></div>
+    <script>
+    /* Boot watchdog. If the app has not mounted anything six seconds after the page loaded, the bundle
+       failed before React could run (an old browser that cannot parse it, or an error at start-up).
+       Without this the page is simply blank; with it, the person sees why, and the browser version and
+       error text they can send on. Plain ES5 on purpose — it has to run where the bundle cannot. */
+    (function () {
+      var err = '';
+      window.addEventListener('error', function (e) { err = err || (e && e.message) || ''; });
+      setTimeout(function () {
+        var r = document.getElementById('root');
+        if (!r || r.children.length) return;
+        r.innerHTML = '<div dir="rtl" style="font:16px/1.65 system-ui,-apple-system,sans-serif;padding:32px 24px;color:#15151A;max-width:30rem;margin:0 auto">'
+          + '<div style="font-size:21px;font-weight:800;margin-bottom:10px">האפליקציה לא נטענה בדפדפן הזה</div>'
+          + '<div style="color:#63636D">לרוב זה דפדפן ישן מדי. עדכון מערכת ההפעלה או פתיחה ב-Chrome פותרים את זה. הנתונים שלך לא נמחקו.</div>'
+          + '<button onclick="location.reload()" style="margin-top:18px;border:0;border-radius:999px;background:#0B6E5F;color:#fff;font:inherit;font-weight:800;padding:12px 22px">טעינה מחדש</button>'
+          + '<pre dir="ltr" style="margin-top:22px;font-size:11px;color:#63636D;white-space:pre-wrap;word-break:break-word;background:#F1F0EB;border-radius:12px;padding:12px">'
+          + (err ? err.replace(/</g, '&lt;') + '\n' : '') + navigator.userAgent.replace(/</g, '&lt;') + '</pre></div>';
+      }, 6000);
+    })();
+    </script>
+  </body>
+</html>
